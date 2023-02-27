@@ -1,0 +1,50 @@
+﻿@page
+@model Torneo.App.Frontend.Pages.Partidos.CreateModel
+@{
+}
+<h1>Nuevo partido</h1>
+<form method="post">
+    <div class="form-group">
+        <label asp-for="partido.FechaHora"> Introduzca la fecha y hora</label>
+        <input asp-for="partido.FechaHora" class="form-control">
+        <span class="text-danger" asp-validation-for="partido.FechaHora"></span>
+    </div>
+    <div class="form-group">
+        <label for="idEquipoLocal">Equipo local</label>
+        <select id="idEquipoLocal" name="idEquipoLocal" class="form-control">
+            @foreach (var equipo in Model.local)
+            {
+                <option value="@equipo.Id">@equipo.Nombre</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="idEquipoVisitante">Equipo visitante</label>
+        <select id="idEquipoVisitante" name="idEquipoVisitante" class="form-control">
+            @foreach (var equipo in Model.visitante)
+            {
+                <option value="@equipo.Id">@equipo.Nombre</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="idArbitro">Arbitro</label>
+        <select id="idArbitro" name="idArbitro" class="form-control">
+            @foreach (var arbitro in Model.arbitros)
+            {
+                <option value="@arbitro.Id">@arbitro.Nombre</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="idEstadio">Estadio</label>
+        <select id="idEstadio" name="idEstadio" class="form-control">
+            @foreach (var estadio in Model.estadios)
+            {
+                <option value="@estadio.Id">@estadio.Nombre</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Crear partido</button>
+</form>
+<a class="btn btn-secondary" asp-page="./Index">Volver</a>

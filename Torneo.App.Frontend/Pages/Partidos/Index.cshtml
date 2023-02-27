@@ -1,0 +1,39 @@
+﻿@page
+@model Torneo.App.Frontend.Pages.Partidos.IndexModel
+@{
+}
+@if (Model.ErrorEliminar)
+{
+    <div class="alert alert-danger" role="alert">No se pudo eliminar el partido</div>
+}
+<h1>Listado de Partidos</h1>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Fecha y hora</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var partido in Model.partidos)
+        {
+            <tr>
+                <th>@partido.Id</th>
+                <td>@partido.FechaHora</td>
+                <td>
+                    <a class="btn btn-primary" asp-page="./Details" asp-route-id="@partido.Id">Detalle</a>
+                    <a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@partido.Id">Editar</a>
+                    <form method="post" class="d-inline">
+                        <button asp-page-handler="Delete" asp-route-id="@partido.Id"
+                        onclick="return confirm('¿Desea eliminar el partido?')"
+                        class="btn btn-danger">Delete
+
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-primary" asp-page="./Create">Crear Partido</a>
